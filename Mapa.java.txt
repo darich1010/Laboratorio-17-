@@ -1,0 +1,23 @@
+public class Mapa {
+    private String[][] terreno;
+    private Ejercito[][] posicionEjercitos;
+
+    public Mapa(int filas, int columnas) {
+        terreno = new String[filas][columnas];
+        posicionEjercitos = new Ejercito[filas][columnas];
+    }
+
+    public void establecerTerreno(int fila, int columna, String tipoTerreno) {
+        terreno[fila][columna] = tipoTerreno;
+    }
+
+    public void colocarEjercito(int fila, int columna, Ejercito ejercito) {
+        if (posicionEjercitos[fila][columna] == null) {
+            posicionEjercitos[fila][columna] = ejercito;
+        }
+    }
+
+    public Ejercito obtenerEjercito(int fila, int columna) {
+        return posicionEjercitos[fila][columna];
+    }
+}

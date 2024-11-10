@@ -1,0 +1,55 @@
+import java.util.Random;
+
+public class Simulacion17 {
+    public static void main(String[] args) {
+        
+        int filas = 5;
+        int columnas = 5;
+        Mapa mapa = new Mapa(filas, columnas);
+        
+        
+        String[] tiposTerreno = {"bosque", "campo abierto", "montaña", "desierto", "playa"};
+        Random random = new Random();
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                String terreno = tiposTerreno[random.nextInt(tiposTerreno.length)];
+                mapa.establecerTerreno(i, j, terreno);
+            }
+        }
+
+        
+        Ejercito ejercitoIngles = new Ejercito("Inglaterra");
+        Ejercito ejercitoFrances = new Ejercito("Francia");
+
+        
+        for (int i = 0; i < 5; i++) {
+            ejercitoIngles.agregarSoldado(new Soldado(random.nextInt(10) + 1));
+            ejercitoFrances.agregarSoldado(new Soldado(random.nextInt(10) + 1));
+        }
+
+        
+        mapa.colocarEjercito(0, 0, ejercitoIngles);
+        mapa.colocarEjercito(4, 4, ejercitoFrances);
+
+        // Mostrar el estado inicial del mapa
+        System.out.println("Estado inicial del mapa:");
+        mostrarMapa(mapa, filas, columnas);
+
+        
+    }
+
+   
+    public static void mostrarMapa(Mapa mapa, int filas, int columnas) {
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                Ejercito ejercito = mapa.obtenerEjercito(i, j);
+                if (ejercito != null) {
+                    System.out.print("[" + ejercito.getReino().charAt(0) + "] ");
+                } else {
+                    System.out.print("[ ] ");
+                }
+            }
+            System.out.println();
+        }
+    }
+}

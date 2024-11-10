@@ -1,0 +1,28 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Ejercito {
+    private List<Soldado> soldados;
+    private String reino;
+
+    public Ejercito(String reino) {
+        this.reino = reino;
+        this.soldados = new ArrayList<>();
+    }
+
+    public void agregarSoldado(Soldado soldado) {
+        soldados.add(soldado);
+    }
+
+    public int calcularNivelVidaTotal() {
+        int totalVida = 0;
+        for (Soldado soldado : soldados) {
+            totalVida += soldado.getNivelVida();
+        }
+        return totalVida;
+    }
+
+    public String getReino() {
+        return reino;
+    }
+}
