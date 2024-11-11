@@ -8,16 +8,48 @@ public class Mapa {
     }
 
     public void establecerTerreno(int fila, int columna, String tipoTerreno) {
-        terreno[fila][columna] = tipoTerreno;
+        if (fila >= 0 && fila < terreno.length && columna >= 0 && columna < terreno[0].length) {
+            terreno[fila][columna] = tipoTerreno;
+        }
+    }
+
+    public String obtenerTerreno(int fila, int columna) {
+        if (fila >= 0 && fila < terreno.length && columna >= 0 && columna < terreno[0].length) {
+            return terreno[fila][columna];
+        }
+        return null;
     }
 
     public void colocarEjercito(int fila, int columna, Ejercito ejercito) {
-        if (posicionEjercitos[fila][columna] == null) {
-            posicionEjercitos[fila][columna] = ejercito;
+        if (fila >= 0 && fila < posicionEjercitos.length && columna >= 0 && columna < posicionEjercitos[0].length) {
+            if (posicionEjercitos[fila][columna] == null) {
+                posicionEjercitos[fila][columna] = ejercito;
+            }
         }
     }
 
     public Ejercito obtenerEjercito(int fila, int columna) {
-        return posicionEjercitos[fila][columna];
+        if (fila >= 0 && fila < posicionEjercitos.length && columna >= 0 && columna < posicionEjercitos[0].length) {
+            return posicionEjercitos[fila][columna];
+        }
+        return null;
+    }
+
+    public void eliminarEjercito(int fila, int columna) {
+        if (fila >= 0 && fila < posicionEjercitos.length && columna >= 0 && columna < posicionEjercitos[0].length) {
+            posicionEjercitos[fila][columna] = null;
+        }
+    }
+
+    public boolean moverEjercito(int filaActual, int columnaActual, int nuevaFila, int nuevaColumna) {
+        if (nuevaFila >= 0 && nuevaFila < posicionEjercitos.length && nuevaColumna >= 0 && nuevaColumna < posicionEjercitos[0].length) {
+            if (posicionEjercitos[nuevaFila][nuevaColumna] == null) {  
+                Ejercito ejercitoAMover = posicionEjercitos[filaActual][columnaActual];
+                posicionEjercitos[filaActual][columnaActual] = null;
+                posicionEjercitos[nuevaFila][nuevaColumna] = ejercitoAMover;
+                return true; 
+            }
+        }
+        return false; 
     }
 }
